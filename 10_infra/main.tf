@@ -13,7 +13,7 @@ terraform {
     bucket  = "udemy-nagata-tfstate-bucket"
     key     = "tastylog-dev.tfstate"
     region  = "ap-northeast-1"
-    profile = "pf-1-sandbox-sso"
+    # profile = "pf-1-sandbox-sso"
   }
 }
 
@@ -21,12 +21,12 @@ terraform {
 # Provider
 # ---------------------------------------------
 provider "aws" {
-  profile = "pf-1-sandbox-sso"
+  # profile = "pf-1-sandbox-sso"
   region  = "ap-northeast-1"
 }
 
 provider "aws" {
   alias   = "virginia"
-  profile = "pf-1-sandbox-sso"
+  # profile = "pf-1-sandbox-sso"
   region  = "us-east-1"
 }
