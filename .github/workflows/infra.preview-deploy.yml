@@ -17,6 +17,8 @@ permissions:
 env:
   AWS_REGION: ap-northeast-1
   TF_VERSION: 1.2.8
+  TF_PROJECT: hnudemy
+  TF_ENVIRONMENT: hntest
 
 defaults:
   run:
@@ -42,9 +44,19 @@ jobs:
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
-      - name:
+      - name: Terraform init
         run: |
           terraform init -no-color
-      - name:
+      - name: Terraform validate
         run: |
           terraform validate -no-color
+      - name: Terraform plan
+        run: |
+          terraform plan \
+            -var 'project=${{ env. }}' \
+            -var 'environment=${{ env. }}' \
+            -var 'username=${{ secrets.MYSQL_USERNAME }}' \
+            -var 'password=${{ secrets.MYSQL_PASSWORD }}' \
+            -input=false \
+            -no-color \
+            -detailed-exitcode
