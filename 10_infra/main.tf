@@ -10,9 +10,9 @@ terraform {
     }
   }
   backend "s3" {
-    bucket  = "udemy-nagata-tfstate-bucket"
-    key     = "tastylog-dev.tfstate"
-    region  = "ap-northeast-1"
+    bucket = "udemy-nagata-tfstate-bucket"
+    key    = "tastylog-dev.tfstate"
+    region = "ap-northeast-1"
     # profile = "pf-1-sandbox-sso"
   }
 }
@@ -22,11 +22,11 @@ terraform {
 # ---------------------------------------------
 provider "aws" {
   # profile = "pf-1-sandbox-sso"
-  region  = "ap-northeast-1"
+  region = "ap-northeast-1"
 }
 
 provider "aws" {
-  alias   = "virginia"
+  alias = "virginia"
   # profile = "pf-1-sandbox-sso"
-  region  = "us-east-1"
+  region = "us-east-1"
 }
