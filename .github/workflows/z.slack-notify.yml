@@ -11,8 +11,9 @@ jobs:
       - name: Slack notify
         uses: slackapi/slack-github-action@v2.0.0
         with:
+          channel-id: "C08AUTFD9PX"
+          method: chat.postMessage
           payload: |
-            channel-id: "C08AUTFD9PX",
             {
               "blocks": [
                 {
