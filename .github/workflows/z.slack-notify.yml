@@ -11,26 +11,24 @@ jobs:
       - name: Slack notify
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          channel-id: 'C08AUTFD9PX'
           method: chat.postMessage
           payload: |
-            {
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "Message Header",
-                    "emoji": true
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Hello World :ghost:"
-                  }
+            channel: 'C08AUTFD9PX'
+            "blocks": [
+              {
+                "type": "header",
+                "text": {
+                  "type": "plain_text",
+                  "text": "Message Header",
+                  "emoji": true
                 }
-              ]
-            }
+              },
+              {
+                "type": "section",
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "Hello World :ghost:"
+                }
+              }
+            ]
           token: ${{ secrets.SLACK_BOT_TOKEN }}
