@@ -63,8 +63,8 @@ jobs:
             -input=false \
             -no-color \
             -detailed-exitcode
+            echo "exitcode=$?" >> $GITHUB_OUTPUT
       - name: Slack notify
-        run: echo "Previous step exit code ${{ steps.plan.outputs.exitcode }}"
         uses: slackapi/slack-github-action@v2.0.0
         with:
           method: chat.postMessage
