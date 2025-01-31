@@ -29,6 +29,8 @@ jobs:
   preview:
     name: "Preview"
     runs-on: ubuntu-latest
+    outputs:
+      TF_PLAN_EXITCODE: ${{ steps.plan.outputs.exitcode }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -63,10 +65,6 @@ jobs:
             -input=false \
             -no-color \
             -detailed-exitcode
-            TERRAFORM_EXIT_CODE=$?
-            echo "Terraform exit code: $TERRAFORM_EXIT_CODE"
-            echo "exitcode=$TERRAFORM_EXIT_CODE" >> $GITHUB_OUTPUT
-            cat $GITHUB_OUTPUT
       - name: Slack notify
         uses: slackapi/slack-github-action@v2.0.0
         with:
@@ -86,7 +84,7 @@ jobs:
                 "type": "section",
                 "text": {
                   "type": "mrkdwn",
-                  "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n exitcode: ${{ steps.plan.outputs.exitcode }}"
+                  "text": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
                 }
               }
             ]
